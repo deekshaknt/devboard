@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DevBoard: tech events for students</title>
+  <meta name="description" content="Browse, search and save upcoming tech events, workshops and hackathons.">
+  <script>
+    // Set the theme before the page paints so there is no flash.
+    (function () {
+      var theme = 'light';
+      try {
+        theme = localStorage.getItem('devboard:theme') ||
+          (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      } catch (e) {}
+      document.documentElement.dataset.theme = theme;
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to events</a>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="logo" href="./">DevBoard</a>
+      <div id="tabs-slot" class="site-header__tabs"></div>
+      <button id="theme-toggle" class="btn btn--small" type="button">Dark mode</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="intro">
+      <h1>Find your next build night</h1>
+      <p>Workshops, hackathons, talks and meetups for students. Save the ones you do not want to miss.</p>
+    </section>
+
+    <div id="filters-slot" hidden></div>
+    <p id="status" class="status" role="status" aria-live="polite"></p>
+    <div id="content"></div>
+  </main>
+
+  <dialog id="event-dialog" class="dialog" aria-labelledby="dialog-title"></dialog>
+
+  <noscript><p class="container">DevBoard needs JavaScript to show events.</p></noscript>
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
